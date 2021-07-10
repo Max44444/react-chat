@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Chat from './Chat';
-import reportWebVitals from './reportWebVitals';
+import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -9,5 +9,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-reportWebVitals();
