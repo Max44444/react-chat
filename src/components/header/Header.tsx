@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './Header.scss';
+import './header.scss';
 import moment from 'moment';
 
 interface HeaderProps {

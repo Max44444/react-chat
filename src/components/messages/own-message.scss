@@ -1,0 +1,40 @@
+.message-edit {
+  margin-right: 0.75rem;
+}
+
+@media screen and (max-width: 1000px){
+  .own-message-wrapper {
+    justify-content: flex-end;
+
+    .own-message {
+      margin-right: 3.5rem;
+      border-radius: 10px 10px 0 10px;
+
+      &:before {
+        content: " ";
+        position: absolute;
+        background-color: lightblue;
+        width: 10px;
+        height: 10px;
+        bottom: 0;
+        left: 100%;
+      }
+
+      &:after {
+        content: " ";
+        position: absolute;
+        background-color: white;
+        width: 10px;
+        height: 10px;
+        bottom: 0;
+        left: 100%;
+        border-radius: 0 0 0 10px;
+      }
+
+      .message-user-avatar {
+        left: calc(100% + 0.5rem);
+      }
+    }
+  }
+}
+
