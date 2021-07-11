@@ -12,6 +12,7 @@ interface ChatProps {
 }
 const Chat: FC<ChatProps> = ({ url }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [updatedMessage, setUpdatedMessage] = useState<IMessage | undefined>(undefined);
   const [currentUser] = useState<IUser>({
     userId: '1',
     user: 'Max',
@@ -25,6 +26,28 @@ const Chat: FC<ChatProps> = ({ url }) => {
 
   const onMessageSend = (message: IMessage) => setMessages(messages => [...messages, message]);
 
+  const onMessageDelete = (messageId: string): void => {
+    const idx = messages.findIndex(item => item.id === messageId);
+    setMessages(messages => [
+      ...messages.slice(0, idx),
+      ...messages.slice(idx + 1)
+    ]);
+  }
+
+  const onMessageUpdate = (message: IMessage): void => {
+    if (!message.text.trim()) {
+      onMessageDelete(message.id)
+    } else {
+      const idx = messages.findIndex(item => item.id === message.id);
+      setMessages(messages => [
+        ...messages.slice(0, idx),
+        message,
+        ...messages.slice(idx + 1)
+      ]);
+      setUpdatedMessage(undefined);
+    }
+  }
+
   return <div className='chat'>
     <Header
       title='My Chat'
@@ -32,8 +55,21 @@ const Chat: FC<ChatProps> = ({ url }) => {
       messageCount={messages.length}
       lastMessageDate={messages[messages.length - 1]?.createdAt}
     />
-    { messages ? <MessageList userId="1" messages={messages}/> : <Loader/> }
-    <MessageInput user={currentUser} onMessageSend={onMessageSend}/>
+    { messages ?
+      <MessageList
+        userId={currentUser.userId}
+        messages={messages}
+        onMessageDelete={onMessageDelete}
+        onSetUpdatedMessage={setUpdatedMessage}
+      /> :
+      <Loader/>
+    }
+    <MessageInput
+      user={currentUser}
+      onMessageSend={onMessageSend}
+      updatedMessage={updatedMessage}
+      onMessageUpdate={onMessageUpdate}
+    />
   </div>;
 }
 

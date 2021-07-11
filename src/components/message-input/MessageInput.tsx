@@ -1,32 +1,41 @@
-import React, { FC, FormEvent, useRef } from 'react';
+import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
 import './message-input.scss';
 import { IMessage, IUser } from '../../common/interfaces';
 
 interface MessageInputProps {
   user: IUser,
-  onMessageSend(message: IMessage): void;
+  onMessageSend(message: IMessage): void,
+  updatedMessage?: IMessage,
+  onMessageUpdate(message: IMessage): void
 }
 
-export const MessageInput: FC<MessageInputProps> = ({ user, onMessageSend }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+export const MessageInput: FC<MessageInputProps> = ({
+  user,
+  onMessageSend,
+  updatedMessage,
+  onMessageUpdate
+}) => {
+  const initialValue = !!updatedMessage ? updatedMessage.text : '';
+  const [inputText, setInputText] = useState<string>('');
+
+  useEffect(() => setInputText(updatedMessage?.text || ''), [updatedMessage]);
+
+  const createMessage = (text: string, message: IMessage = {
+    text: '',
+    ...user,
+    id: Date.now().toString(),
+    createdAt: new Date()
+  }): IMessage => ({ ...message, text: text.trim() });
 
   const onSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    const text = inputRef.current!.value;
-    inputRef.current!.value = '';
 
-    if (!text.trim()) {
-      return
+    if (updatedMessage) {
+      onMessageUpdate(createMessage(inputText, { ...updatedMessage, editedAt: new Date() }))
+    } else if (inputText.trim()) {
+      onMessageSend(createMessage(inputText));
     }
-
-    const message: IMessage = {
-      ...user,
-      text,
-      id: Date.now().toString(),
-      createdAt: new Date()
-    }
-
-    onMessageSend(message);
+    setInputText('');
   };
 
   return <footer className="footer">
@@ -35,8 +44,13 @@ export const MessageInput: FC<MessageInputProps> = ({ user, onMessageSend }) => 
         type="text"
         className='message-input'
         placeholder="Write a message..."
-        ref={inputRef}/>
-      <button type="submit" className="submit-btn">Send</button>
+        value={inputText}
+        onChange={e => setInputText(e.target.value)}
+      />
+      <button
+        type="submit"
+        className="submit-btn"
+      >Send</button>
     </form>
   </footer>
 }

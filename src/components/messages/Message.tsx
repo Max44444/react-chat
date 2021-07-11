@@ -1,35 +1,31 @@
 import React, { FC } from 'react';
 import moment from 'moment';
 import './message.scss';
+import { IMessage } from '../../common/interfaces';
 
 interface MessageProps {
-  id: string,
-  text: string,
-  time: Date,
-  edited?: boolean,
-  username: string,
-  userAvatarLink?: string
+  message: IMessage
 }
 
-export const Message: FC<MessageProps> = ({
-  id,
-  text,
-  time,
-  edited,
-  username,
-  userAvatarLink
-}) => {
-  return <div className="message-wrapper" key={id}>
+export const Message: FC<MessageProps> = ({ message }) => {
+  return <div className="message-wrapper" key={message.id}>
     <div className="message">
-      <img src={userAvatarLink} alt="avatar" className="message-user-avatar"/>
-      <h3 className="message-user-name">{ username }</h3>
-      <p className="message-text">{ text }</p>
+      <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
+      <h3 className="message-user-name">{ message.user }</h3>
+      <p className="message-text">{ message.text }</p>
       <div className="info">
-        <button className="message-like">
-          <i className="fas fa-thumbs-up"/>
-        </button>
+        <div className="likes">
+          <button className="message-like">
+            <i className="fas fa-thumbs-up"/>
+          </button>
+          { message.likeCount && <div className="like-count">{ message.likeCount }</div> }
+        </div>
         <div className="message-time">
-          { `${ edited ? 'Edited at: ' : '' }${ moment(time).format('LT') }` }
+          {
+            !!message.editedAt ?
+              `Edited at: ${moment(message.editedAt).format('LT')}` :
+              moment(message.createdAt).format('LT')
+          }
         </div>
       </div>
     </div>

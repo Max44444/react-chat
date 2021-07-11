@@ -6,10 +6,17 @@ import { mapMessagesByDate } from '../../helpers';
 
 interface MessageListProps {
   userId: string,
-  messages: IMessage[]
+  messages: IMessage[],
+  onMessageDelete(id: string): void,
+  onSetUpdatedMessage(message: IMessage): void
 }
 
-export const MessageList: FC<MessageListProps> = ({ userId, messages }) => {
+export const MessageList: FC<MessageListProps> = ({
+  userId,
+  messages,
+  onMessageDelete,
+  onSetUpdatedMessage
+}) => {
 
   const [messageDictionary, setMessageDictionary] = useState<IMessagesDictionary>({});
   useEffect(() => setMessageDictionary(mapMessagesByDate(messages)), [messages]);
@@ -24,18 +31,11 @@ export const MessageList: FC<MessageListProps> = ({ userId, messages }) => {
         { messageDictionary[key].map(message => (
           message.userId === userId ?
             <OwnMessage
-              id={message.id}
-              text={message.text}
-              time={message.editedAt ? message.editedAt : message.createdAt}
-              userAvatarLink={message.avatar}
-              edited={!!message.editedAt}/> :
-            <Message
-              id={message.id}
-              text={message.text}
-              time={message.editedAt ? message.editedAt : message.createdAt}
-              username={message.user}
-              userAvatarLink={message.avatar}
-              edited={!!message.editedAt}/>
+              message={message}
+              onDelete={onMessageDelete}
+              onUpdate={onSetUpdatedMessage}
+            /> :
+            <Message message={message} />
         )) }
       </>)
     }

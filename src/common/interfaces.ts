@@ -5,7 +5,8 @@ export interface IMessage {
   user: string,
   text: string,
   createdAt: Date,
-  editedAt?: Date
+  editedAt?: Date,
+  likeCount?: number
 }
 
 export interface IMessagesDictionary {
