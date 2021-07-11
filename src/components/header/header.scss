@@ -1,3 +1,6 @@
+@import "./../../colors";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .header {
   grid-column: 1/2;
   grid-row: 1/2;
@@ -7,7 +10,28 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background-color: #a1a1a1;
-  color: white;
+  background-color: $darkBlue;
+  color: $warmWhite;
   font-size: 1.2rem;
+  letter-spacing: 0.25px;
+
+  .header-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+
+  span {
+    font-size: 1.5rem;
+    margin-right: 0.05rem;
+    font-weight: 300;
+  }
+
+  .header-last-message-date {
+    span {
+      display: inline-block;
+      margin-right: 0;
+      margin-left: 0.1rem;
+    }
+  }
 }
