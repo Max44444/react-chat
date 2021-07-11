@@ -15,14 +15,24 @@ export const Header: FC<HeaderProps> = ({
   messageCount,
   lastMessageDate
 }) => (
-  <header className='header'>
+  <header className="header">
     <h2 className="header-title">{ title }</h2>
-    <p className='header-users-count'><span>{ usersCount }</span> participant{ usersCount === 1 ? '' : 's' }</p>
-    <p className='header-messages-count'><span>{ messageCount }</span> messages{ messageCount === 1 ? '' : 's' }</p>
+    <div className="block">
+      <div className="header-users-count block-value">{ usersCount }</div>
+      <div className="block-title">participant{ usersCount === 1 ? '' : 's' }</div>
+    </div>
+    <div className="block">
+      <div className="header-messages-count block-value">{ messageCount }</div>
+      <div className="block-title">messages{ messageCount === 1 ? '' : 's' }</div>
+    </div>
+
     {lastMessageDate &&
-      <p className='header-last-message-date'>last message at: <span>{
-        moment(lastMessageDate).format('MMM Do YY HH:mm')
-      }</span></p>
+    <div className="block">
+      <div className="block-title">last message at:</div>
+      <div className="header-last-message-date block-value">
+        { moment(lastMessageDate).format('MMM Do YY HH:mm') }
+      </div>
+    </div>
     }
   </header>
 );

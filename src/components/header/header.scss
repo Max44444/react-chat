@@ -20,6 +20,25 @@
     font-weight: 300;
   }
 
+  .block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .block-value {
+      font-size: 1.5rem;
+      margin-right: 0.3rem;
+      font-weight: 300;
+
+      &.header-last-message-date {
+        display: inline-block;
+        margin-right: 0;
+        margin-left: 0.4rem;
+      }
+    }
+
+  }
+
   span {
     font-size: 1.5rem;
     margin-right: 0.05rem;
