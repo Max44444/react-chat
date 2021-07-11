@@ -48,8 +48,8 @@ const Chat: FC<ChatProps> = ({ url }) => {
         message,
         ...messages.slice(idx + 1)
       ]);
-      setUpdatedMessage(undefined);
     }
+    setUpdatedMessage(undefined);
   }
 
   const toggleReaction = (userId: string, messageId: string): void => {

@@ -1,25 +1,93 @@
+@import "./../../colors";
+
 .message-input {
+  position: relative;
   grid-column: 1/2;
   grid-row: 3/4;
-  height: 100%;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #909090;
+  background-color: $darkBlue;
+  padding: 1rem 2rem;
 
   .form {
     width: 100%;
-    padding: 1rem;
+    height: 100%;
+    color: $warmWhite;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     .message-input-text {
-      padding: 5px;
-      width: calc(100% - 62px);
+      flex: 1 0 auto;
+      display: inline-block;
+      background-color: $darkBlue;
+      color: $warmWhite;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      padding: 0.4rem 0;
+
+      &::placeholder {
+        color: $lightGray;
+        font-weight: 300;
+      }
+
+      &:focus {
+        border-bottom: 1px solid $rose;
+      }
     }
 
     .message-input-button {
       padding: 6px;
-      width: 50px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.9rem;
+      border-radius: 50%;
+      margin-left: 1rem;
+      background-color: $darkBlue;
+      color: $warmWhite;
+      transition: 300ms;
+
+      &:hover {
+        background-color: darken($darkBlue, 10%);
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .edit-message {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: 58px;
+    background-color: $lightGray;
+    color: black;
+    padding: 0.8rem 2rem;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin: 8px 15px;
+    border-radius: 30px;
+    box-shadow: 3px 3px 5px 4px rgba(0, 0, 0, 0.2);
+
+    .title {
+      display: flex;
+
+      i {
+        font-size: 1.1rem;
+      }
+
+      h3 {
+        margin-left: 1rem;
+        font-weight: normal;
+      }
+    }
+
+    .message {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
     }
   }
 }

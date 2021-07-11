@@ -48,7 +48,18 @@ export const MessageInput: FC<MessageInputProps> = ({
       <button
         type="submit"
         className="message-input-button"
-      >Send</button>
+      >
+        <i className="fas fa-angle-double-right"/>
+      </button>
     </form>
+    { !!updatedMessage &&
+    <div className="edit-message" data-text={updatedMessage?.text}>
+      <div className="title">
+        <i className="fas fa-edit"/>
+        <h3>Edit message...</h3>
+      </div>
+      <div className="message">{ updatedMessage.text }</div>
+    </div>
+    }
   </footer>
 }
