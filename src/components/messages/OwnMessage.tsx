@@ -47,8 +47,8 @@ export const OwnMessage: FC<OwnMessageProps> = ({
         <div className="message-time">
           {
             !!message.editedAt ?
-              `Edited at: ${moment(message.editedAt).format('LT')}` :
-              moment(message.createdAt).format('LT')
+              `Edited at: ${moment(message.editedAt).format('HH:mm')}` :
+              moment(message.createdAt).format('HH:mm')
           }
         </div>
       </div>
