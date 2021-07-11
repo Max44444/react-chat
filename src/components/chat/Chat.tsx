@@ -71,7 +71,7 @@ const Chat: FC<ChatProps> = ({ url }) => {
   return <div className='chat'>
     <Header
       title='My Chat'
-      usersCount={5}
+      usersCount={messages.filter((x, i, a) => a.findIndex(i => i.user === x.user) === i).length}
       messageCount={messages.length}
       lastMessageDate={messages[messages.length - 1]?.createdAt}
     />
