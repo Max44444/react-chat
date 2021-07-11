@@ -30,19 +30,21 @@ export const MessageList: FC<MessageListProps> = ({
 
   return <main className="message-list">
     {
-      Object.keys(messageDictionary).map(key => <>
-        <div className="divider">
+      Object.keys(messageDictionary).map((key, index) => <div key={index}>
+        <div className="divider" key={index}>
           <div className="messages-divider">{ key }</div>
         </div>
         { messageDictionary[key].map(message => (
           message.userId === userId ?
             <OwnMessage
+              key={message.id + Date.now() + index}
               message={message}
               likeCount={reactions.filter(item => item.messageId === message.id).length}
               onDelete={onMessageDelete}
               onUpdate={onSetUpdatedMessage}
             /> :
             <Message
+              key={message.id + Date.now() + index}
               message={message}
               likeCount={reactions.filter(item => item.messageId === message.id).length}
               toggleReaction={messageId => toggleReaction(userId, messageId)}
@@ -51,7 +53,7 @@ export const MessageList: FC<MessageListProps> = ({
               }
             />
         )) }
-      </>)
+      </div>)
     }
     <div ref={messagesEndRef}/>
   </main>;

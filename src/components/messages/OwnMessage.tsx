@@ -17,7 +17,7 @@ export const OwnMessage: FC<OwnMessageProps> = ({
   onDelete,
   onUpdate
 }) => {
-  return <div className="message-wrapper own-message-wrapper" key={message.id}>
+  return <div className="message-wrapper own-message-wrapper">
     <div className="message own-message">
       <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
       <p className="message-text">{ message.text }</p>

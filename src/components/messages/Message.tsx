@@ -16,7 +16,7 @@ export const Message: FC<MessageProps> = ({
   isCurrentUserLike,
   toggleReaction
 }) => {
-  return <div className="message-wrapper" key={message.id}>
+  return <div className="message-wrapper">
     <div className="message">
       <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
       <h3 className="message-user-name">{ message.user }</h3>
