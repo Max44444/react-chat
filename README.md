@@ -1,46 +1,105 @@
-# Getting Started with Create React App
+А теперь то, чего больше всего ждут академисты - поработать с React. Ух, будет интересно!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Задание
 
-## Available Scripts
+Нужно написать приложение **Чат**. _User Iinterface_ чата должен содержать следующие компоненты с классами элементов указанных в скобках:
 
-In the project directory, you can run:
+*   **Header** - отдельный компонент (`.header`), который содержит название _чата_ (`.header-title`), количество пользователей (`.header-users-count`), количество сообщений (`.header-messages-count`), дата последнего сообщения (`.header-last-message-date`) в формате _dd.mm.yyyy hh:mm_ (Например: 15.02.2021 13:35)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*   **Message** - компонент сообщения (`.message`), должен содержать текст (`.message-text`), время (`.message-time`) в формате _hh:mm_, кнопку “лайк” (`.message-like` или `.message-liked`), имя пользователя (`.message-user-name`) и аватар (`.message-user-avatar`).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+*   **OwnMessage** - компонент личного сообщения (`.own-message`), содержит текст (`.message-text`), время (`.message-time`) в формате _hh:mm_, кнопки редактирования (`.message-edit`) и удаления (`.message-delete`)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+*   **MessageList** - компонент который содержит список сообщений (`.message-list`). Список должен быть разделен по дням (`.messages-divider`) (линия с указанным днем, в формате "Today", "Yesterday", "Monday, 17 June")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*   **MessageInput** - компонент (`.message-input`), который содержит текстовое поле (`.message-input-text`) и кнопку "Send" (`.message-input-button`). Должен использоваться для отправки и редактирования сообщения.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+*   **Preloader** - компонент со спиннером предзагрузки данных (`.preloader`)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*   **Chat** компонент (`.chat`), который принимает URL ресурс с данными для чата и отрисовывает все вышеперечисленные компоненты. Это компонент должен иметь следующий формат:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    <Chat
+        url=”string”
+    />
 
-## Learn More
+И должен быть экспортирован в файле `bsa.js` в корне проекта (на уровне с public и src папками):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+_bsa.js_
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    import Chat from ...;
+    
+    export default Chat;
+
+![mock](https://i.gyazo.com/0e46fd5f6eb034e6a5dde4607ade086c.png)
+
+### Требования к заданию:
+
+*   весь _User Interface_ должен быть построен на компонентах и ​​находиться в главном компоненте-контейнере _Chat_
+
+*   данные загружаются в _Chat_ со стороннего ресурса и дальше хранятся в state этого компонента
+
+*   при загрузке страницы появляется Preloader, и исчезает после того, как данные загрузились
+
+
+элементы компонентов должны содержать классы указанные в скобках выше (`.class-name`). Например:
+
+_Preloader_
+
+    <div className='preloader'></div>
+
+*   чат должен иметь следующий функционал:
+    *   писать сообщения в чат
+
+    *   редактировать сообщение _(личное)_
+
+    *   удалять сообщение _(личное)_
+
+    *   ставить лайк _(не личное)_
+
+*   каждое сообщение должно содержать следующие блоки:
+    *   аватар _(кроме собственного сообщения)_
+
+    *   текст сообщения
+
+    *   время сообщения
+
+    *   лайк
+
+
+Для загрузки данных рекомендуется использовать функцию [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+Использовать только библиотеку **React** _(без backend, без Redux и других библиотек)_
+
+### Что будет оцениваться
+
+При оценивании будут учитываться следующие **критерии:**
+
+*   функционал (проверяется автоматически)
+
+*   структура компонентов
+
+*   инкапсуляция данных _(компонент должен получать данные через props, локальный state только там, где необходимо)_
+
+*   чистота кода
+
+
+Максимальный балл: 9. Еще один балл можно получить, если:
+
+*   Задеплоить работу на любой сервис, например [Heroku](https://www.heroku.com/)
+*   Сделать классный UI / UX
+*   Реализовать дополнительные фичи, прокачать функционал чата
+*   Использовать функциональные подходы, паттерны
+*   [TypeScript](https://www.typescriptlang.org/)
+
+Список сообщений можно получить [здесь](https://edikdolynskyi.github.io/react_sources/messages.json)
+
+Желаю Удачи!
+
+_P.S. Можно использовать любые CSS библиотеки_
