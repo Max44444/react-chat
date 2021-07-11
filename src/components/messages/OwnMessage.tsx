@@ -36,11 +36,11 @@ export const OwnMessage: FC<OwnMessageProps> = ({
             <i className="fas fa-trash-alt"/>
           </button>
           <div className="likes">
-            <button
+            <div
               className="message-like"
             >
               <i className="fas fa-thumbs-up"/>
-            </button>
+            </div>
             <div className='like-count'>{ likeCount }</div>
           </div>
         </div>

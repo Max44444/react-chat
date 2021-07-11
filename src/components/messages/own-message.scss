@@ -1,12 +1,36 @@
-.control {
-  display: flex;
+@import "./../../colors";
 
-  .message-edit {
-    margin-right: 0.75rem;
-  }
+.own-message-wrapper {
+  .own-message {
+    background-color: $rose;
+    color: $warmWhite;
 
-  .message-delete {
-    margin-right: 0.75rem;
+    &:before {
+      background-color: $rose;
+    }
+
+    &:after {
+      background-color: $warmWhite;
+    }
+
+    .info {
+        button {
+          background-color: $rose;
+          color: $warmWhite;
+        }
+    }
+
+    .control {
+      display: flex;
+
+      .message-edit {
+        margin-right: 0.75rem;
+      }
+
+      .message-delete {
+        margin-right: 0.75rem;
+      }
+    }
   }
 }
 
@@ -21,7 +45,6 @@
       &:before {
         content: " ";
         position: absolute;
-        background-color: lightblue;
         width: 10px;
         height: 10px;
         bottom: 0;
@@ -31,12 +54,12 @@
       &:after {
         content: " ";
         position: absolute;
-        background-color: white;
         width: 10px;
         height: 10px;
         bottom: 0;
         left: 100%;
         border-radius: 0 0 0 10px;
+        box-shadow: 5px -5px 4px -7px rgba(34, 60, 80, 0.6) inset;
       }
 
       .message-user-avatar {
@@ -48,11 +71,24 @@
       }
 
       .info {
-
         .control {
           margin-left: 0.75rem;
           order: 2;
           display: flex;
+
+          .message-edit {
+            order: 2;
+          }
+
+          .message-delete {
+            order: 3;
+            margin-right: 0;
+          }
+
+          .likes {
+            order: 1;
+            margin-right: 0.75rem;
+          }
         }
 
         .message-time {
