@@ -4,21 +4,32 @@ import './message.scss';
 import { IMessage } from '../../common/interfaces';
 
 interface MessageProps {
-  message: IMessage
+  message: IMessage,
+  likeCount: number,
+  isCurrentUserLike: boolean,
+  toggleReaction(messageId: string): void
 }
 
-export const Message: FC<MessageProps> = ({ message }) => {
+export const Message: FC<MessageProps> = ({
+  message,
+  likeCount,
+  isCurrentUserLike,
+  toggleReaction
+}) => {
   return <div className="message-wrapper" key={message.id}>
     <div className="message">
       <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
       <h3 className="message-user-name">{ message.user }</h3>
       <p className="message-text">{ message.text }</p>
       <div className="info">
-        <div className="likes">
-          <button className="message-like">
+        <div className={`likes ${isCurrentUserLike && 'liked'}`}>
+          <button
+            className="message-like"
+            onClick={() => toggleReaction(message.id)}
+          >
             <i className="fas fa-thumbs-up"/>
           </button>
-          { message.likeCount && <div className="like-count">{ message.likeCount }</div> }
+          { !!likeCount && <div className='like-count'>{ likeCount }</div> }
         </div>
         <div className="message-time">
           {

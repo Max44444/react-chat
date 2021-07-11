@@ -3,16 +3,18 @@ import { Header } from '../header';
 import { MessageInput } from '../message-input';
 import './chat.scss';
 import { Loader } from '../loader';
-import { loadMessages, mapMessagesByDate, sortMessagesByDate } from '../../helpers';
-import { IMessage, IMessagesDictionary, IUser } from '../../common/interfaces';
+import { loadMessages, sortMessagesByDate } from '../../helpers';
+import { IMessage, IReaction, IUser } from '../../common/interfaces';
 import { MessageList } from '../message-list';
 
 interface ChatProps {
   url: string
 }
+
 const Chat: FC<ChatProps> = ({ url }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [updatedMessage, setUpdatedMessage] = useState<IMessage | undefined>(undefined);
+  const [reactions, setReactions] = useState<IReaction[]>([]);
   const [currentUser] = useState<IUser>({
     userId: '1',
     user: 'Max',
@@ -48,6 +50,18 @@ const Chat: FC<ChatProps> = ({ url }) => {
     }
   }
 
+  const toggleReaction = (userId: string, messageId: string): void => {
+    const idx = reactions.findIndex(item => item.userId === userId && item.messageId === messageId);
+    if (idx === -1) {
+      setReactions(reactions => [...reactions, { userId, messageId }])
+    } else {
+      setReactions([
+        ...reactions.slice(0, idx),
+        ...reactions.slice(idx + 1)
+      ]);
+    }
+  }
+
   return <div className='chat'>
     <Header
       title='My Chat'
@@ -59,8 +73,10 @@ const Chat: FC<ChatProps> = ({ url }) => {
       <MessageList
         userId={currentUser.userId}
         messages={messages}
+        reactions={reactions}
         onMessageDelete={onMessageDelete}
         onSetUpdatedMessage={setUpdatedMessage}
+        toggleReaction={toggleReaction}
       /> :
       <Loader/>
     }

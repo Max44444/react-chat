@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, FormEvent, useEffect, useState } from 'react';
 import './message-input.scss';
 import { IMessage, IUser } from '../../common/interfaces';
 
@@ -15,7 +15,6 @@ export const MessageInput: FC<MessageInputProps> = ({
   updatedMessage,
   onMessageUpdate
 }) => {
-  const initialValue = !!updatedMessage ? updatedMessage.text : '';
   const [inputText, setInputText] = useState<string>('');
 
   useEffect(() => setInputText(updatedMessage?.text || ''), [updatedMessage]);

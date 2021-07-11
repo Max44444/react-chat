@@ -64,6 +64,25 @@
       justify-content: space-between;
       margin-top: 0.6rem;
 
+      .likes {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &.liked {
+          color: white;
+
+          .message-like {
+            color: white;
+          }
+        }
+
+        .like-count {
+          margin-left: 0.5rem;
+          font-size: 0.9rem;
+        }
+      }
+
       button {
         background-color: lightblue;
         font-size: 0.9rem;

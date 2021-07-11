@@ -6,7 +6,6 @@ export interface IMessage {
   text: string,
   createdAt: Date,
   editedAt?: Date,
-  likeCount?: number
 }
 
 export interface IMessagesDictionary {
@@ -17,4 +16,9 @@ export interface IUser {
   userId: string,
   user: string,
   avatar?: string
+}
+
+export interface IReaction {
+  messageId: string,
+  userId: string
 }
