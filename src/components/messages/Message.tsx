@@ -29,7 +29,7 @@ export const Message: FC<MessageProps> = ({
           >
             <i className="fas fa-thumbs-up"/>
           </button>
-          { !!likeCount && <div className='like-count'>{ likeCount }</div> }
+          <div className='like-count'>{ likeCount }</div>
         </div>
         <div className="message-time">
           {

@@ -6,12 +6,14 @@ import { IMessage } from '../../common/interfaces';
 
 interface OwnMessageProps {
   message: IMessage,
+  likeCount: number,
   onDelete(id: string): void,
   onUpdate(message: IMessage): void
 }
 
 export const OwnMessage: FC<OwnMessageProps> = ({
   message,
+  likeCount,
   onDelete,
   onUpdate
 }) => {
@@ -20,13 +22,6 @@ export const OwnMessage: FC<OwnMessageProps> = ({
       <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
       <p className="message-text">{ message.text }</p>
       <div className="info">
-        <div className="message-time">
-          {
-            !!message.editedAt ?
-              `Edited at: ${moment(message.editedAt).format('LT')}` :
-              moment(message.createdAt).format('LT')
-          }
-        </div>
         <div className="control">
           <button
             className="message-edit"
@@ -40,6 +35,21 @@ export const OwnMessage: FC<OwnMessageProps> = ({
           >
             <i className="fas fa-trash-alt"/>
           </button>
+          <div className="likes">
+            <button
+              className="message-like"
+            >
+              <i className="fas fa-thumbs-up"/>
+            </button>
+            <div className='like-count'>{ likeCount }</div>
+          </div>
+        </div>
+        <div className="message-time">
+          {
+            !!message.editedAt ?
+              `Edited at: ${moment(message.editedAt).format('LT')}` :
+              moment(message.createdAt).format('LT')
+          }
         </div>
       </div>
     </div>

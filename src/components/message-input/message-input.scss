@@ -1,4 +1,4 @@
-.footer {
+.message-input {
   grid-column: 1/2;
   grid-row: 3/4;
   height: 100%;
@@ -12,12 +12,12 @@
     width: 100%;
     padding: 1rem;
 
-    .message-input {
+    .message-input-text {
       padding: 5px;
       width: calc(100% - 62px);
     }
 
-    .submit-btn {
+    .message-input-button {
       padding: 6px;
       width: 50px;
     }

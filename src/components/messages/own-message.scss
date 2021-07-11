@@ -1,5 +1,13 @@
-.message-edit {
-  margin-right: 0.75rem;
+.control {
+  display: flex;
+
+  .message-edit {
+    margin-right: 0.75rem;
+  }
+
+  .message-delete {
+    margin-right: 0.75rem;
+  }
 }
 
 @media screen and (max-width: 1000px){
@@ -37,6 +45,20 @@
 
       .message-user-avatar {
         left: calc(100% + 0.5rem);
+      }
+
+      .info {
+
+        .control {
+          margin-left: 0.75rem;
+          order: 2;
+          display: flex;
+        }
+
+        .message-time {
+          margin-left: 0;
+          order: 1;
+        }
       }
 
     }

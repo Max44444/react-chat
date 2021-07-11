@@ -31,11 +31,12 @@ export const MessageList: FC<MessageListProps> = ({
   return <main className="message-list">
     {
       Object.keys(messageDictionary).map(key => <>
-        <div className="date" data-date={key}/>
+        <div className="messages-divider" data-date={key}/>
         { messageDictionary[key].map(message => (
           message.userId === userId ?
             <OwnMessage
               message={message}
+              likeCount={reactions.filter(item => item.messageId === message.id).length}
               onDelete={onMessageDelete}
               onUpdate={onSetUpdatedMessage}
             /> :

@@ -13,6 +13,7 @@ interface ChatProps {
 
 const Chat: FC<ChatProps> = ({ url }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [updatedMessage, setUpdatedMessage] = useState<IMessage | undefined>(undefined);
   const [reactions, setReactions] = useState<IReaction[]>([]);
   const [currentUser] = useState<IUser>({
@@ -24,6 +25,7 @@ const Chat: FC<ChatProps> = ({ url }) => {
   useEffect(() => {(async () => {
       const arr = await loadMessages(url);
       setMessages(sortMessagesByDate(arr));
+      setIsLoading(false);
   })()}, [url]);
 
   const onMessageSend = (message: IMessage) => setMessages(messages => [...messages, message]);
@@ -62,6 +64,10 @@ const Chat: FC<ChatProps> = ({ url }) => {
     }
   }
 
+  if (isLoading) {
+    return <Loader/>;
+  }
+
   return <div className='chat'>
     <Header
       title='My Chat'
@@ -69,17 +75,14 @@ const Chat: FC<ChatProps> = ({ url }) => {
       messageCount={messages.length}
       lastMessageDate={messages[messages.length - 1]?.createdAt}
     />
-    { messages ?
-      <MessageList
-        userId={currentUser.userId}
-        messages={messages}
-        reactions={reactions}
-        onMessageDelete={onMessageDelete}
-        onSetUpdatedMessage={setUpdatedMessage}
-        toggleReaction={toggleReaction}
-      /> :
-      <Loader/>
-    }
+    <MessageList
+      userId={currentUser.userId}
+      messages={messages}
+      reactions={reactions}
+      onMessageDelete={onMessageDelete}
+      onSetUpdatedMessage={setUpdatedMessage}
+      toggleReaction={toggleReaction}
+    />
     <MessageInput
       user={currentUser}
       onMessageSend={onMessageSend}

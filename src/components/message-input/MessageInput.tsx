@@ -28,7 +28,6 @@ export const MessageInput: FC<MessageInputProps> = ({
 
   const onSubmit = (event: FormEvent): void => {
     event.preventDefault();
-
     if (updatedMessage) {
       onMessageUpdate(createMessage(inputText, { ...updatedMessage, editedAt: new Date() }))
     } else if (inputText.trim()) {
@@ -37,18 +36,18 @@ export const MessageInput: FC<MessageInputProps> = ({
     setInputText('');
   };
 
-  return <footer className="footer">
+  return <footer className="message-input">
     <form className="form" onSubmit={onSubmit}>
       <input
         type="text"
-        className='message-input'
+        className='message-input-text'
         placeholder="Write a message..."
         value={inputText}
         onChange={e => setInputText(e.target.value)}
       />
       <button
         type="submit"
-        className="submit-btn"
+        className="message-input-button"
       >Send</button>
     </form>
   </footer>
