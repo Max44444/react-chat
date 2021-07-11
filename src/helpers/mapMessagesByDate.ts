@@ -10,7 +10,7 @@ export const mapMessagesByDate = (messages: IMessage[]): IMessagesDictionary => 
         sameDay: '[Today]',
         nextDay: '[Tomorrow]',
         lastDay: '[Yesterday]',
-        sameElse: 'dddd, DD MMMM YYYY'
+        sameElse: 'dddd, DD MMMM'
       });
       !result[date] ? result[date] = [item] : result[date].push(item);
     });

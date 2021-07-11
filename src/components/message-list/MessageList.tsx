@@ -31,7 +31,9 @@ export const MessageList: FC<MessageListProps> = ({
   return <main className="message-list">
     {
       Object.keys(messageDictionary).map(key => <>
-        <div className="messages-divider" data-date={key}/>
+        <div className="divider">
+          <div className="messages-divider">{ key }</div>
+        </div>
         { messageDictionary[key].map(message => (
           message.userId === userId ?
             <OwnMessage
