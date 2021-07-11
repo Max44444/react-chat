@@ -1,3 +1,8 @@
-export * from './loadMessages';
-export * from './mapMessagesByDate';
-export * from './sortMessagesByDate';
+import { loadMessages } from './loadMessages';
+import { mapMessagesByDate } from './mapMessagesByDate'
+import { sortMessagesByDate } from './sortMessagesByDate';
+export {
+  loadMessages,
+  mapMessagesByDate,
+  sortMessagesByDate
+}

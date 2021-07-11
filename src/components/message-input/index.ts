@@ -1,1 +1,2 @@
-export * from './MessageInput';
+import { MessageInput } from './MessageInput';
+export { MessageInput };

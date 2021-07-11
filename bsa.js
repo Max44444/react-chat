@@ -1,2 +1,2 @@
-import { Chat } from './src/components/chat';
+import Chat from './src/components/chat';
 export default Chat;
