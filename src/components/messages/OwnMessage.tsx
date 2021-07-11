@@ -4,23 +4,28 @@ import './message.scss';
 import './own-message.scss';
 
 interface OwnMessageProps {
+  id: string
   text: string,
   time: Date,
-  userAvatarLink: string
+  edited?: boolean
+  userAvatarLink?: string
 }
 
 export const OwnMessage: FC<OwnMessageProps> = ({
+  id,
   text,
   time,
+  edited,
   userAvatarLink
 }) => {
-  return <div className="message-wrapper own-message-wrapper">
+  return <div className="message-wrapper own-message-wrapper" key={id}>
     <div className="message own-message">
       <img src={userAvatarLink} alt="avatar" className="message-user-avatar"/>
-      <h3 className="message-user-name">You</h3>
       <p className="message-text">{ text }</p>
       <div className="info">
-        <div className="message-time">{ moment(time).format('LT') }</div>
+        <div className="message-time">
+          { `${ edited ? 'Edited at:' : '' }${ moment(time).format('LT') }` }
+        </div>
         <div className="control">
           <button className="message-edit">
             <i className="fas fa-edit"/>

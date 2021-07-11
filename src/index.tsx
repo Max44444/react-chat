@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Chat from './Chat';
+import App from './App';
 import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chat />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

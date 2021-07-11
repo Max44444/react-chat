@@ -40,11 +40,13 @@
       right: calc(100% + 0.5rem);
       width: 2.5rem;
       height: 2.5rem;
+      object-fit: cover;
       border-radius: 100%;
       z-index: 1;
     }
 
     .message-user-name {
+      margin-bottom: 0.5rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -52,7 +54,8 @@
     }
 
     .message-text {
-      margin-top: 0.5rem;
+      width: 100%;
+      word-wrap: break-word;
     }
 
     .info {
@@ -68,6 +71,7 @@
 
       .message-time {
         font-size: 0.9rem;
+        margin: 0 0.75rem;
       }
     }
   }

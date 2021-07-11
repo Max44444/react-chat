@@ -1,0 +1,36 @@
+.message-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  .date {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      z-index: 0;
+    }
+
+    &:after {
+      content: attr(data-date);
+      background-color: white;
+      color: black;
+      padding: 0.75rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+}
