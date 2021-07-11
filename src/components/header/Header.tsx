@@ -30,7 +30,7 @@ export const Header: FC<HeaderProps> = ({
     <div className="block">
       <div className="block-title">last message at:</div>
       <div className="header-last-message-date block-value">
-        { moment(lastMessageDate).format('MMM Do YY HH:mm') }
+        { moment(lastMessageDate).format('DD.MM.YYYY HH:mm') }
       </div>
     </div>
     }
