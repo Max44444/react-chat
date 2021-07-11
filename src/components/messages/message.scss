@@ -63,6 +63,14 @@
       word-wrap: break-word;
     }
 
+    &.message-liked .likes {
+      color: $rose;
+
+      .message-like {
+        color: $rose;
+      }
+    }
+
     .info {
       display: flex;
       align-items: center;
@@ -73,14 +81,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        &.liked {
-          color: $rose;
-
-          .message-like {
-            color: $rose;
-          }
-        }
 
         .like-count {
           margin-left: 0.5rem;

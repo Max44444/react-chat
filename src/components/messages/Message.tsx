@@ -17,7 +17,7 @@ export const Message: FC<MessageProps> = ({
   toggleReaction
 }) => {
   return <div className="message-wrapper">
-    <div className="message">
+    <div className={`message ${isCurrentUserLike && 'message-liked'}`}>
       <img src={message.avatar} alt="avatar" className="message-user-avatar"/>
       <h3 className="message-user-name">{ message.user }</h3>
       <p className="message-text">{ message.text }</p>
